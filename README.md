@@ -1,22 +1,12 @@
 # ReactSorting
 
-<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
-
-✨ Your new, shiny [Nx workspace](https://nx.dev) is almost ready ✨.
-
-[Learn more about this workspace setup and its capabilities](https://nx.dev/getting-started/tutorials/react-standalone-tutorial?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
-
-## Finish your CI setup
-
-[Click here to finish setting up your workspace!](https://cloud.nx.app/connect/5Hb1p5qBRr)
-
-
-## Run tasks
+## Scripts
 
 To run the dev server for your app, use:
 
 ```sh
 npx nx serve react-sorting
+
 ```
 
 To create a production bundle:
@@ -30,16 +20,6 @@ To see all available targets to run for a project, run:
 ```sh
 npx nx show project react-sorting
 ```
-        
-These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
-
-[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Add new projects
-
-While you could add new projects to your workspace manually, you might want to leverage [Nx plugins](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) and their [code generation](https://nx.dev/features/generate-code?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) feature.
-
-Use the plugin's generator to create new projects.
 
 To generate a new application, use:
 
@@ -53,30 +33,28 @@ To generate a new library, use:
 npx nx g @nx/react:lib mylib
 ```
 
-You can use `npx nx list` to get a list of installed plugins. Then, run `npx nx list <plugin-name>` to learn about more specific capabilities of a particular plugin. Alternatively, [install Nx Console](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) to browse plugins and generators in your IDE.
+## Dokumentacja Zadania.
 
-[Learn more about Nx plugins &raquo;](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) | [Browse the plugin registry &raquo;](https://nx.dev/plugin-registry?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+Zadanie: Zadanie: Wizualizacja Algorytmu Sortowania
+To do:
 
+1. stworzenie aplikacji React, która wizualizuje algorytm sortowania, np. QuickSort, MergeSort lub inne, według twojego wyboru
+2. Wizualizacja: Stwórz wizualizację procesu sortowania, gdzie kroki algorytmu są krok po kroku prezentowane na interfejsie użytkownika. Na przykład, dla QuickSort, kroki mogą obejmować wybór pivota, podział tablicy, rekurencyjne sortowanie podtablic itp.
+3. Animacje: Dodaj animacje do wizualizacji, aby lepiej zobrazować, jak elementy tablicy poruszają się i zmieniają swoje pozycje podczas sortowania.
+4. Interaktywność:
 
-[Learn more about Nx on CI](https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+- Dodaj przycisk "Sortuj", który inicjuje proces sortowania.
+- Zaimplementuj przycisk "Generate new array", który generuje nową losową tablicę do posortowania.
+- Udostępnij opcję wyboru algorytmu sortowania spośród co najmniej dwóch różnych algorytmów.
+- Pozwól użytkownikowi na dostosowanie rozmiaru tablicy do sortowania.
+- Kolorowanie elementów Podczas sortowania, podkreślaj różnymi kolorami elementy tablicy, aby wskazać, które są porównywane, zamieniane, itp.
 
-## Install Nx Console
+### Dokumentacja kroków
 
-Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.
+pod tym punktem opiszę decyzje projektowe i ewentualne trudności napotkane podczas implementacji zadania
 
-[Install Nx Console &raquo;](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+1. Wybranie środowiska:
 
-## Useful links
+- Wybrałem środowisko opartę na NX + vite, z tego względu, że aplikacje CRA słabo sie skaluję. Dodatkowo repo oparte na NX pozwala na lepsze i sprawniejsze zarządzanie + ustawienie testów np w playwright
 
-Learn more:
-
-- [Learn more about this workspace setup](https://nx.dev/getting-started/tutorials/react-standalone-tutorial?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects)
-- [Learn about Nx on CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Releasing Packages with Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [What are Nx plugins?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-And join the Nx community:
-- [Discord](https://go.nx.dev/community)
-- [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
-- [Our Youtube channel](https://www.youtube.com/@nxdevtools)
-- [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+2. Zadanie rozpocząłem od przygotowania i rodzielenia kodu na foldery zgodnie z ich przeznaczeniem oraz dodałem basic'owe funkcjonalności sortowania i wizualizacji

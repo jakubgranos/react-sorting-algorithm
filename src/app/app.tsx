@@ -1,9 +1,9 @@
-import NxWelcome from './nx-welcome';
+import SortingVisualizer from '@modules/SortingVisualizer';
 
 export function App() {
   return (
     <div>
-      <NxWelcome title="react-sorting" />
+      <SortingVisualizer />
     </div>
   );
 }
