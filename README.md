@@ -36,7 +36,6 @@ npx nx g @nx/react:lib mylib
 ## Dokumentacja Zadania.
 
 Zadanie: Zadanie: Wizualizacja Algorytmu Sortowania
-To do:
 
 1. stworzenie aplikacji React, która wizualizuje algorytm sortowania, np. QuickSort, MergeSort lub inne, według twojego wyboru
 2. Wizualizacja: Stwórz wizualizację procesu sortowania, gdzie kroki algorytmu są krok po kroku prezentowane na interfejsie użytkownika. Na przykład, dla QuickSort, kroki mogą obejmować wybór pivota, podział tablicy, rekurencyjne sortowanie podtablic itp.
@@ -55,6 +54,6 @@ pod tym punktem opiszę decyzje projektowe i ewentualne trudności napotkane pod
 
 1. Wybranie środowiska:
 
-- Wybrałem środowisko opartę na NX + vite, z tego względu, że aplikacje CRA słabo sie skaluję. Dodatkowo repo oparte na NX pozwala na lepsze i sprawniejsze zarządzanie + ustawienie testów np w playwright
+- Wybrałem środowisko opartę na NX + vite, z tego względu, że aplikacje CRA słabo sie skalują. Dodatkowo repo oparte na NX pozwala na lepsze i sprawniejsze zarządzanie + ustawienie testów np w playwright
 
 2. Zadanie rozpocząłem od przygotowania i rodzielenia kodu na foldery zgodnie z ich przeznaczeniem oraz dodałem basic'owe funkcjonalności sortowania i wizualizacji

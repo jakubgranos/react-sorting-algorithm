@@ -1,6 +1,7 @@
 import { useState, FC } from 'react';
 import generateNewArray from '@hooks/GenerateNewArray';
 import { quickSort } from '@hooks/QuickSort';
+import Button from '@components/Button';
 
 /**
  * SortingVisualizer component
@@ -9,33 +10,25 @@ import { quickSort } from '@hooks/QuickSort';
 const SortingVisualizer: FC = () => {
   const [arrayRange, setArrayRange] = useState<number>(20);
   const [isSorting, setIsSorting] = useState<boolean>(false);
-
-  const newArrayOptions = {
-    range: arrayRange,
-    max: 100,
-    min: 5,
-  };
-
-  const [numbers, setNumbers] = useState<number[]>(
-    generateNewArray(newArrayOptions)
+  const [numbers, setNumbers] = useState<number[]>(() =>
+    generateNewArray({ range: arrayRange, max: 100 })
   );
 
   // Generate a new array of numbers
   const generateArray = () => {
-    setNumbers(generateNewArray(newArrayOptions));
+    setNumbers(generateNewArray({ range: arrayRange, max: 100 }));
   };
 
   // Sort the array of numbers
   const sortArrayFunction = async () => {
     setIsSorting(true);
+    const sortedArray = await quickSort({ array: numbers });
+    setNumbers(sortedArray);
 
-    await quickSort({ array: numbers }).then((res) => {
-      setNumbers(res);
-
-      setTimeout(() => {
-        setIsSorting(false);
-      }, 500);
-    });
+    // Delay the sorting state to match animation duration
+    setTimeout(() => {
+      setIsSorting(false);
+    }, 500);
   };
 
   return (
@@ -62,24 +55,16 @@ const SortingVisualizer: FC = () => {
           onChange={(e) => setArrayRange(Number(e.target.value))}
         />
       </div>
-      <button
-        className={`mt-4 p-2  text-white rounded ${
-          isSorting ? 'bg-gray-200' : 'bg-green-500'
-        }`}
-        onClick={generateArray}
-        disabled={isSorting}
+      <Button onClick={generateArray} isSorting={isSorting} variant="primary">
+        Generate New Array
+      </Button>
+      <Button
+        onClick={sortArrayFunction}
+        isSorting={isSorting}
+        variant="secondary"
       >
-        Generate new array
-      </button>
-      <button
-        className={`mt-4 p-2  text-black rounded border border-black ${
-          isSorting && 'bg-gray-200'
-        }`}
-        onClick={() => sortArrayFunction()}
-        disabled={isSorting}
-      >
-        Sort
-      </button>
+        Sort Array
+      </Button>
     </div>
   );
 };
