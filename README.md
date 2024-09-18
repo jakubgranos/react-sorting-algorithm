@@ -54,6 +54,9 @@ pod tym punktem opiszę decyzje projektowe i ewentualne trudności napotkane pod
 
 1. Wybranie środowiska:
 
-- Wybrałem środowisko opartę na NX + vite, z tego względu, że aplikacje CRA słabo sie skalują. Dodatkowo repo oparte na NX pozwala na lepsze i sprawniejsze zarządzanie + ustawienie testów np w playwright
+- Setup środowiska to: React + typescript + tailwind dodatkowo wybrałem środowisko opartę na NX + vite, z tego względu, że aplikacje CRA słabo sie skalują. Dodatkowo repo oparte na NX pozwala na lepsze i sprawniejsze zarządzanie + ustawienie testów np w playwright
 
-2. Zadanie rozpocząłem od przygotowania i rodzielenia kodu na foldery zgodnie z ich przeznaczeniem oraz dodałem basic'owe funkcjonalności sortowania i wizualizacji
+2. Zadanie rozpocząłem od przygotowania struktury folderów oraz przygotowanie context hooka aby zapobiec "props drilling"
+- Wybrałem taką metodę, gdyż potrzebowałem opcji zarządzania wartościami state w różnych komponentach. 
+
+3. Dodałem bardzo prostą opcje wyswietlania i generowania (razem z animajcą) sortowania, aby zobrazować sobię aktualny stan i sprawdzic czy wszystkie hooki działają poprawnie.

@@ -1,13 +1,16 @@
 import { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom/client';
 
-import App from './app/app';
+import SortingVisualizer from '@modules/SortingVisualizer';
+import { SortingVisualizerProvider } from '@contexts/useSortingVisualizerContext';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <StrictMode>
-    <App />
+    <SortingVisualizerProvider>
+      <SortingVisualizer />
+    </SortingVisualizerProvider>
   </StrictMode>
 );

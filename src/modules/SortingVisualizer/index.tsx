@@ -1,40 +1,20 @@
-import { useState, FC } from 'react';
-import generateNewArray from '@hooks/GenerateNewArray';
-import { quickSort } from '@hooks/QuickSort';
-import Button from '@components/Button';
+import { FC } from 'react';
+import { useSortingVisualizerContext } from '@contexts/useSortingVisualizerContext';
+import generateNewArray from '@helpers/generateNewArray';
 
-/**
- * SortingVisualizer component
- * Renders the array of numbers and provides the functionality to generate a new array and sort the array
- */
 const SortingVisualizer: FC = () => {
-  const [arrayRange, setArrayRange] = useState<number>(20);
-  const [isSorting, setIsSorting] = useState<boolean>(false);
-  const [numbers, setNumbers] = useState<number[]>(() =>
-    generateNewArray({ range: arrayRange, max: 100 })
-  );
+  const { array, setArray, arraySize, setArraySize, isSorting } =
+    useSortingVisualizerContext();
 
   // Generate a new array of numbers
   const generateArray = () => {
-    setNumbers(generateNewArray({ range: arrayRange, max: 100 }));
-  };
-
-  // Sort the array of numbers
-  const sortArrayFunction = async () => {
-    setIsSorting(true);
-    const sortedArray = await quickSort({ array: numbers });
-    setNumbers(sortedArray);
-
-    // Delay the sorting state to match animation duration
-    setTimeout(() => {
-      setIsSorting(false);
-    }, 500);
+    setArray(generateNewArray({ range: arraySize, max: 100 }));
   };
 
   return (
     <div className="flex flex-col items-center mt-8 p-10">
       <div className="flex items-end space-x-1 h-64 overflow-auto max-w-full">
-        {numbers.map((number, index) => (
+        {array.map((number, index) => (
           <span
             key={index}
             className={`array-bar ${
@@ -51,20 +31,25 @@ const SortingVisualizer: FC = () => {
           className="border border-black p-1 ml-2"
           min="1"
           max="100"
-          value={arrayRange}
-          onChange={(e) => setArrayRange(Number(e.target.value))}
+          value={arraySize}
+          onChange={(e) => setArraySize(Number(e.target.value))}
         />
       </div>
-      <Button onClick={generateArray} isSorting={isSorting} variant="primary">
-        Generate New Array
-      </Button>
-      <Button
-        onClick={sortArrayFunction}
-        isSorting={isSorting}
-        variant="secondary"
+      <button
+        onClick={generateArray}
+        className="
+        mt-4
+        bg-blue-500
+        hover:bg-blue-700
+        text-white
+        font-bold
+        py-2
+        px-4
+        rounded
+      "
       >
-        Sort Array
-      </Button>
+        Generate New Array
+      </button>
     </div>
   );
 };
