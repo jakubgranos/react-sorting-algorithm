@@ -78,11 +78,11 @@ pod tym punktem opiszę decyzje projektowe i ewentualne trudności napotkane pod
 
 3. Dodałem bardzo prostą opcje wyswietlania i generowania (razem z animajcą) sortowania, aby zobrazować sobię aktualny stan i sprawdzic czy wszystkie hooki działają poprawnie.
 
-4. Stworzenie Controllerów do vizualizera aby user ustalać jak ma się sortowanie zachowywać
+4. Stworzenie Controllerów do vizualizera aby user mógł ustalić jak ma się sortowanie zachowywać
 
 5. Dodanie pierwszego algorytmu "quick sort"
 
-- Dzieląc kod na mniejsze częsci (aby kod był bardziej czytelny) wykonałem funkcje generatora, który pozwala na "krokowe" wykonywanie algorytmu, dzięki czemu mamy lepszą wizualizacje sortowania, dodatkowo stworzyłem updateArrayWithDelay, która pozwala na ustawienie "delay" dla generatora + możemy dodać kolory aby pokazać jak dokłanie działa dany algorytm i dodatkowo rodzieliłem delay osobo dla generatorów, aby nie mieszac kod w jednej dużej funkjci, tylko w mniejszych - kod jest wtedy bardziej czytelny
+- Dzieląc kod na mniejsze częsci (aby kod był bardziej czytelny) wykonałem funkcje generatora, który pozwala na "krokowe" wykonywanie algorytmu, dzięki czemu mamy lepszą wizualizacje sortowania, dodatkowo stworzyłem updateArrayWithDelay, która pozwala na ustawienie "delay" dla generatora + możemy dodać kolory aby pokazać jak dokłanie działa dany algorytm i dodatkowo rodzieliłem delay osobo dla generatorów, aby nie mieszac kod w jednej dużej funkcji, tylko w mniejszych - kod jest wtedy bardziej czytelny
 
 - wizualizacje sortowania oparłem na tym źródle: https://commons.wikimedia.org/wiki/File:Quicksort.gif
 
@@ -92,7 +92,7 @@ pod tym punktem opiszę decyzje projektowe i ewentualne trudności napotkane pod
 
 6. Dodanie drugiego algorytmu "merge sort"
 
-- tak samo jak przy poprzedim algorytmem, **trudnosci** oraz **rozwiazywanie trudnosci** z tą różnicą, że doszedłem trochę szybciej do tego co i jak działa w tym algorytmie
+- tak samo jak przy poprzednim algorytmem, **trudnosci** oraz **rozwiazywanie trudnosci** z tą różnicą, że doszedłem trochę szybciej do tego co i jak działa w tym algorytmie
 
 - wizualizacje sortowania do tego algorytmu oparłem na tym źródle: https://commons.wikimedia.org/wiki/File:MergeSort_2.gif
 
@@ -101,7 +101,7 @@ pod tym punktem opiszę decyzje projektowe i ewentualne trudności napotkane pod
 8. Na tym etapie zająłem się dodawaniem styli oraz odpowiedniego "wyglądu" aplikacji, aby była bardziej
    przyjazna oku oraz aby przedstawiała lepiej co się dzieje na ekranie (dzięki komponencie Legend)
 
-- W normalnym projekcie użyłbym tutaj biblioteki react mui lub innej z gotowymi komponentami, tutaj tego nie dodałem, gdyż nie było to wymagane w zadaniu i kodu CSS było na tyle mało, że lepiej było użyc tailinda, niż ściagać inną cieższą libkę, która normalnie może wpłynąć na performance (ooczywiscie to case przy większych projektach). A przy okazji jak wziałem się bardziej za "wizualne" sprawy, to przepisałem trochę komentarzy w kodzie aby bylo bardziej zrozumiałe dla innego deva
+- W normalnym projekcie użyłbym tutaj biblioteki react mui lub innej z gotowymi komponentami, tutaj tego nie dodałem, gdyż nie było to wymagane w zadaniu i kodu CSS było na tyle mało, że lepiej było użyc tailwinda, niż ściagać inną cieższą libkę, która normalnie może wpłynąć na performance (oczywiscie to case przy większych projektach). A przy okazji jak wziałem się bardziej za "wizualne" sprawy, to przepisałem trochę komentarzy w kodzie aby bylo bardziej zrozumiałe dla innego deva
 
 - **Naptokany problem**: zmieniając klasy cssowe, na klasy z tailwinda, zauważyłem, że na wykresie nie zmieniają sie kolory, style podstawowe nadpisały nowe klasy.
 
@@ -161,4 +161,4 @@ pod tym punktem opiszę decyzje projektowe i ewentualne trudności napotkane pod
    - dodanie możliwosci wybrania czy to local czy session storage ma być użyty
    - Zoptymalizowanie useEffect i poberania danych (uniknięcie re-renderów)
 
-10. Deploy 
+10. Deploy
