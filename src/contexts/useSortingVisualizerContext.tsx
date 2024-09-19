@@ -1,11 +1,18 @@
 import generateNewArray from '@helpers/generateNewArray';
 import { createContext, FC, ReactNode, useContext, useState } from 'react';
 
-// List of all sorting algorithms available in the Sorting Visualizer
+/**
+ * Export types for the Sorting Visualizer options
+ */
 export type AlgorithmsOptions = 'quickSort' | 'mergeSort';
+export type AlgorithmSpeedOptions = 'normal' | 'fast' | 'slow';
 
+// Simplified type for the state hook
 type StateSetter<T> = React.Dispatch<React.SetStateAction<T>>;
 
+/**
+ * Define the properties for the SortingVisualizerContext
+ */
 type SortingVisualizerContextProps = {
   arraySize: number;
   setArraySize: StateSetter<number>;
@@ -15,22 +22,26 @@ type SortingVisualizerContextProps = {
   setSelectedAlgorithm: StateSetter<AlgorithmsOptions>;
   isSorting: boolean;
   setIsSorting: StateSetter<boolean>;
+  algorithmSpeed: AlgorithmSpeedOptions;
+  setAlgorithmSpeed: StateSetter<AlgorithmSpeedOptions>;
+  sortedOnce: boolean;
+  setSortedOnce: StateSetter<boolean>;
 };
 
-// Creating context with types for the Sorting Visualizer
+// Create context with types for the Sorting Visualizer
 const SortingVisualizerContext = createContext<SortingVisualizerContextProps>(
   {} as SortingVisualizerContextProps
 );
 
 /**
  * SortingVisualizerProvider component
- * To avoid prop drilling, this component provides the context to the children components
+ * Provides the context to the children components to avoid prop drilling
  */
 export const SortingVisualizerProvider: FC<{ children: ReactNode }> = ({
   children,
 }) => {
   /**
-   * All Possible states for the Sorting Visualizer
+   * All possible states for the Sorting Visualizer
    */
   const [arraySize, setArraySize] = useState<number>(20);
   const [array, setArray] = useState<number[]>(() =>
@@ -39,6 +50,9 @@ export const SortingVisualizerProvider: FC<{ children: ReactNode }> = ({
   const [selectedAlgorithm, setSelectedAlgorithm] =
     useState<AlgorithmsOptions>('quickSort');
   const [isSorting, setIsSorting] = useState<boolean>(false);
+  const [algorithmSpeed, setAlgorithmSpeed] =
+    useState<AlgorithmSpeedOptions>('normal');
+  const [sortedOnce, setSortedOnce] = useState<boolean>(false);
 
   return (
     <SortingVisualizerContext.Provider
@@ -51,6 +65,10 @@ export const SortingVisualizerProvider: FC<{ children: ReactNode }> = ({
         setSelectedAlgorithm,
         isSorting,
         setIsSorting,
+        algorithmSpeed,
+        setAlgorithmSpeed,
+        sortedOnce,
+        setSortedOnce,
       }}
     >
       {children}
@@ -59,8 +77,8 @@ export const SortingVisualizerProvider: FC<{ children: ReactNode }> = ({
 };
 
 /**
- * Creating here useContext can reduce the usage of context and import of sortingVisualizerContext
- * every time where context is needed to use.
+ * Custom hook to use the SortingVisualizerContext
+ * Reduces the need to import and use SortingVisualizerContext directly
  */
 export const useSortingVisualizerContext = () => {
   const context = useContext(SortingVisualizerContext);

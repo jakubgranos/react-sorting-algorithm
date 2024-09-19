@@ -13,11 +13,11 @@ const Button: React.FC<ButtonProps> = ({
   isSorting,
   variant,
 }) => {
-  const baseClasses = 'mt-4 p-2 rounded transition-colors duration-300';
+  const baseClasses = 'p-2 rounded transition-colors duration-300 text-white';
   const variantClasses =
     variant === 'primary'
-      ? `text-white ${isSorting ? 'bg-gray-200' : 'bg-green-500'}`
-      : `text-black border border-black ${isSorting ? 'bg-gray-200' : ''}`;
+      ? `${isSorting ? 'bg-gray-200' : 'bg-green-500'}`
+      : `${isSorting ? 'bg-gray-200' : 'bg-blue-500'}`;
 
   return (
     <button

@@ -1,12 +1,19 @@
-import Button from '@components/Buttons';
+import Button from '@components/Button';
+import ControllerInput from '@components/ControllerInput';
+import ControllerSelect from '@components/ControllerSelect';
 import {
   AlgorithmsOptions,
+  AlgorithmSpeedOptions,
   useSortingVisualizerContext,
 } from '@contexts/useSortingVisualizerContext';
 import generateNewArray from '@helpers/generateNewArray';
 import { handleSort } from '@helpers/sortArrayFunctions';
 import { FC } from 'react';
 
+/**
+ * VisualizerControllers component
+ * Contains the controllers for the sorting visualizer
+ */
 const VisualizerControllers: FC = () => {
   const {
     array,
@@ -16,84 +23,72 @@ const VisualizerControllers: FC = () => {
     setArray,
     setArraySize,
     setSelectedAlgorithm,
+    setIsSorting,
+    algorithmSpeed,
+    setAlgorithmSpeed,
+    sortedOnce,
+    setSortedOnce,
   } = useSortingVisualizerContext();
 
   return (
-    <div className="flex gap-10 items-center justify-center mt-8 w-full">
-      <div className="mb-4">
-        <label
-          htmlFor="algorithm-select"
-          className="block text-sm font-medium text-gray-700"
-        >
-          Select Algorithm
-        </label>
-        <select
-          id="algorithm-select"
-          name="algorithm-select"
-          className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
-          value={selectedAlgorithm}
-          onChange={(e) =>
-            setSelectedAlgorithm(e.target.value as AlgorithmsOptions)
-          }
-        >
-          <option value="quickSort">Quick Sort</option>
-          <option value="bubbleSort">Bubble Sort</option>
-          <option value="mergeSort">Merge Sort</option>
-        </select>
-      </div>
-      <div className="mb-4">
-        <label
-          htmlFor="array-size"
-          className="block text-sm font-medium text-gray-700"
-        >
-          Array Size
-        </label>
-        <input
-          type="number"
-          id="array-size"
-          name="array-size"
-          className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
-          min="1"
-          max="100"
-          value={arraySize}
-          onChange={(e) => setArraySize(Number(e.target.value))}
-        />
-      </div>
-      <div className="mb-4">
-        <label
-          htmlFor="pivot-number"
-          className="block text-sm font-medium text-gray-700"
-        >
-          Pivot Number
-        </label>
-        <input
-          type="number"
-          id="pivot-number"
-          name="pivot-number"
-          className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
-          min="1"
-          max="100"
-        />
-      </div>
-      <div className="flex gap-3 flex-col items-center space-x-4">
+    <div className="flex flex-col gap-3 w-full md:w-[20%] bg-slate-50 px-4 rounded p-10">
+      <ControllerSelect
+        id="algorithm-select"
+        label="Select Algorithm"
+        value={selectedAlgorithm}
+        onChange={(e) =>
+          setSelectedAlgorithm(e.target.value as AlgorithmsOptions)
+        }
+        options={[
+          { value: 'quickSort', label: 'Quick Sort' },
+          { value: 'mergeSort', label: 'Merge Sort' },
+        ]}
+      />
+      <ControllerInput
+        id="array-size"
+        label="Array Size"
+        type="number"
+        value={arraySize}
+        onChange={(e) => setArraySize(Number(e.target.value))}
+        min={1}
+        max={100}
+      />
+      <ControllerSelect
+        id="algorithm-speed"
+        label="Algorithm speed"
+        value={algorithmSpeed}
+        onChange={(e) =>
+          setAlgorithmSpeed(e.target.value as AlgorithmSpeedOptions)
+        }
+        options={[
+          { value: 'normal', label: 'Normal' },
+          { value: 'fast', label: 'Fast' },
+          { value: 'slow', label: 'Slow' },
+        ]}
+      />
+      <div className="flex gap-3 flex-col">
         <Button
-          onClick={() =>
-            setArray(generateNewArray({ range: arraySize, max: 100 }))
-          }
+          onClick={() => {
+            setArray(generateNewArray({ range: arraySize, max: 100 }));
+            setSortedOnce(false);
+          }}
           isSorting={isSorting}
           variant="primary"
         >
           Generate New Array
         </Button>
         <Button
-          onClick={() =>
+          onClick={() => {
             handleSort({
               algorithm: selectedAlgorithm,
               array: array,
               setArray: setArray,
-            })
-          }
-          isSorting={isSorting}
+              setIsSorting: setIsSorting,
+              algorithmSpeed: algorithmSpeed,
+            });
+            setSortedOnce(true);
+          }}
+          isSorting={isSorting || sortedOnce}
           variant="secondary"
         >
           Sort

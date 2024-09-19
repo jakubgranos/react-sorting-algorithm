@@ -66,12 +66,66 @@ pod tym punktem opiszę decyzje projektowe i ewentualne trudności napotkane pod
 
 5. Dodanie pierwszego algorytmu "quick sort"
 
-- Dzieląc kod na mniejsze częsci (aby kod był bardziej czytelny) wykonałem funkcje generatora, który pozwala na "krokowe"
-  wykonywanie algorytmu, dzięki czemu mamy lepszą wizualizacje sortowania, dodatkowo stworzyłem updateArrayWithDelay,
-  która pozwala na ustawienie "delay" dla generatora + możemy dodać kolory aby pokazać jak dokłanie działa dany algorytm.
+- Dzieląc kod na mniejsze częsci (aby kod był bardziej czytelny) wykonałem funkcje generatora, który pozwala na "krokowe" wykonywanie algorytmu, dzięki czemu mamy lepszą wizualizacje sortowania, dodatkowo stworzyłem updateArrayWithDelay, która pozwala na ustawienie "delay" dla generatora + możemy dodać kolory aby pokazać jak dokłanie działa dany algorytm i dodatkowo rodzieliłem delay osobo dla generatorów, aby nie mieszac kod w jednej dużej funkjci, tylko w mniejszych - kod jest wtedy bardziej czytelny
 
 - wizualizacje sortowania oparłem na tym źródle: https://commons.wikimedia.org/wiki/File:Quicksort.gif
 
 - **trudności**: wykonanie bardziej "szczegółowego" algorytmu quick sort wymagał ode mnie "doszkolenia" się w zakresie algorytmów i funkcji które trzeba wykorzystać aby wykonać poprawnie zdanie
 
 - **rozwiąnie trudności**: Dokładny research jak i poradniki na yt pomogły mi zrozumieć jak działa ten algorytm.
+
+6. Dodanie drugiego algorytmu "merge sort"
+
+- tak samo jak przy poprzedim algorytmem, **trudnosci** oraz **rozwiazywanie trudnosci** z tą różnicą, że doszedłem trochę szybciej do tego co i jak działa w tym algorytmie
+
+- wizualizacje sortowania do tego algorytmu oparłem na tym źródle: https://commons.wikimedia.org/wiki/File:MergeSort_2.gif
+
+7. W trakcie 6 kroku, zauwazyłem, że w niekórych miejscach kod sie powtarza, więc rodzieliłem kod na poszczeólne elementy, jak components, helpers, modules itp - tak aby każdy napisany kod był na swoim miejscu.
+
+8. Na tym etapie zająłem się dodawaniem styli oraz odpowiedniego "wyglądu" aplikacji, aby była bardziej
+   przyjazna oku oraz aby przedstawiała lepiej co się dzieje na ekranie (dzięki komponencie Legend)
+
+- W normalnym projekcie użyłbym tutaj biblioteki react mui lub innej z gotowymi komponentami, tutaj tego nie dodałem, gdyż nie było to wymagane w zadaniu i kodu CSS było na tyle mało, że lepiej było użyc tailinda, niż ściagać inną cieższą libkę, która normalnie może wpłynąć na performance (ooczywiscie to case przy większych projektach). A przy okazji jak wziałem się bardziej za "wizualne" sprawy, to przepisałem trochę komentarzy w kodzie aby bylo bardziej zrozumiałe dla innego deva
+
+- **Naptokany problem**: zmieniając klasy cssowe, na klasy z tailwinda, zauważyłem, że na wykresie nie zmieniają sie kolory, style podstawowe nadpisały nowe klasy.
+
+- **Rozwiazanie**: w głownym stylu styles.css napisałem regółki css aplikujac kolory z tailwinda, dzięki czemu nowe klasy będą miały większy piorytet - co prawda da się w klasie tailwind zwiększyć piorytet za pomocą "!" co oznacza, że kalsa ma dodany !important, ale importantów nie powinno się używać (jedynie jako ostateczność jest to dobra opcja).
+
+### Podsumowanie
+
+1. **Wybranie środowiska**:
+
+   - Środowisko: React + TypeScript + Tailwind, z NX + Vite zamiast CRA dla lepszej skalowalności i zarządzania.
+
+2. **Struktura projektu**:
+
+   - Przygotowanie struktury folderów i context hooka, aby uniknąć "props drilling".
+
+3. **Początkowa implementacja**:
+
+   - Dodanie podstawowej funkcji wyświetlania i generowania sortowania z animacją.
+
+4. **Kontrolery wizualizera**:
+
+   - Stworzenie kontrolerów umożliwiających użytkownikowi ustawienie zachowania sortowania.
+
+5. **Algorytm "quick sort"**:
+
+   - Implementacja algorytmu z funkcją generatora dla krokowego wykonywania i wizualizacji.
+   - Źródło wizualizacji: [Quicksort GIF](https://commons.wikimedia.org/wiki/File:Quicksort.gif).
+   - Trudności: Konieczność doszkolenia się w zakresie algorytmów.
+   - Rozwiązanie: Research i poradniki na YouTube.
+
+6. **Algorytm "merge sort"**:
+
+   - Podobne podejście jak przy "quick sort".
+   - Źródło wizualizacji: [MergeSort GIF](https://commons.wikimedia.org/wiki/File:MergeSort_2.gif).
+
+7. **Refaktoryzacja kodu**:
+
+   - Podział kodu na komponenty, helpery, moduły itp., aby zwiększyć czytelność.
+
+8. **Stylizacja i wygląd aplikacji**:
+   - Dodanie stylów i poprawa wyglądu aplikacji.
+   - Problemy: Konflikty stylów przy użyciu Tailwind.
+   - Rozwiązanie: Zastosowanie reguł CSS w `styles.css` dla nadpisania stylów Tailwind.

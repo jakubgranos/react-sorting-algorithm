@@ -8,22 +8,28 @@
 * Global style for the entire application.
 */
 
-.array-bar.low {
-  background-color: yellow;
+.array-bar.low,
+.array-bar.middle {
+  @apply bg-low;
 }
 
 .array-bar.high {
-  background-color: orange;
+  @apply bg-high;
 }
 
-.array-bar.pivot {
-  background-color: red;
-}
-
-.array-bar.sorted {
-  background-color: green;
+.array-bar.pivot,
+.array-bar.left {
+  @apply bg-pivot;
 }
 
 .segment {
-  background-color: lightblue;
+  @apply bg-segment;
+}
+
+.array-bar.right {
+  @apply bg-right;
+}
+
+.array-bar.sorted {
+  @apply bg-sorted;
 }
