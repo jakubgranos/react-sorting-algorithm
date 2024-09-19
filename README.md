@@ -2,6 +2,20 @@
 
 ## Scripts
 
+Installation
+
+using yarn
+
+```sh
+yarn or yarn install
+```
+
+using npm
+
+```sh
+npm install
+```
+
 To run the dev server for your app, use:
 
 ```sh
@@ -15,22 +29,22 @@ To create a production bundle:
 npx nx build react-sorting
 ```
 
+To rest NX
+
+```sh
+ npx nx rest
+```
+
+To repair NX
+
+```sh
+ npx nx repair
+```
+
 To see all available targets to run for a project, run:
 
 ```sh
 npx nx show project react-sorting
-```
-
-To generate a new application, use:
-
-```sh
-npx nx g @nx/react:app demo
-```
-
-To generate a new library, use:
-
-```sh
-npx nx g @nx/react:lib mylib
 ```
 
 ## Dokumentacja Zadania.

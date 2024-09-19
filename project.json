@@ -5,6 +5,14 @@
   "sourceRoot": "./src",
   "projectType": "application",
   "tags": [],
-  "// targets": "to see all targets run: nx show project react-sorting --web",
-  "targets": {}
+  "targets": {
+    "build": {
+      "executor": "@nx/vite:build",
+      "options": {
+        "outputPath": "dist/react-sorting",
+        "configFile": "vite.config.mjs"
+      },
+      "configurations": {}
+    }
+  }
 }
