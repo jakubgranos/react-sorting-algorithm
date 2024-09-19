@@ -16,7 +16,6 @@ const SortingVisualizer: FC = () => {
       <div className="w-full flex flex-col md:flex-row items-stretch justify-between gap-12">
         <VisualizerControllers />
         <div className="flex items-end justify-end space-x-1 w-full md:h-auto h-[20vw] md:w-[80%] overflow-auto max-w-full bg-slate-50 px-4 rounded">
-          {' '}
           {array.map((number, index) => (
             <span
               key={index}

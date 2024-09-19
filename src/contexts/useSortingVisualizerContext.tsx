@@ -62,7 +62,6 @@ export const SortingVisualizerProvider: FC<{ children: ReactNode }> = ({
   /**
    * All possible states for the Sorting Visualizer
    */
-
   // Number() to make sure value from local storage is a number not a string
   const [arraySize, setArraySize] = useState<number>(
     Number(browserStorage.arraySize.get()) || 20
