@@ -119,7 +119,7 @@ export const updateArrayWithDelay = (
   algorithmSpeed: AlgorithmSpeedOptions,
   updateBars: (bars: NodeListOf<Element>, value: any) => void
 ) => {
-  // start from setisSorting to true, to prevent the user from clicking the buttons while sorting
+  // start from setIsSorting to true, to prevent the user from clicking the buttons while sorting
   setIsSorting(true);
 
   const intervalId = setInterval(() => {
