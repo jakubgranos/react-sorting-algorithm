@@ -1,5 +1,13 @@
+import { browserStorage } from '@helpers/browserStorage';
 import generateNewArray from '@helpers/generateNewArray';
-import { createContext, FC, ReactNode, useContext, useState } from 'react';
+import {
+  createContext,
+  FC,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 
 /**
  * Export types for the Sorting Visualizer options
@@ -14,16 +22,27 @@ type StateSetter<T> = React.Dispatch<React.SetStateAction<T>>;
  * Define the properties for the SortingVisualizerContext
  */
 type SortingVisualizerContextProps = {
+  // Array length
   arraySize: number;
   setArraySize: StateSetter<number>;
+
+  // Array of numbers
   array: number[];
   setArray: StateSetter<number[]>;
+
+  // states for algorithm selection
   selectedAlgorithm: AlgorithmsOptions;
   setSelectedAlgorithm: StateSetter<AlgorithmsOptions>;
+
+  // checking the state of sorting
   isSorting: boolean;
   setIsSorting: StateSetter<boolean>;
+
+  // state for algorithm speed
   algorithmSpeed: AlgorithmSpeedOptions;
   setAlgorithmSpeed: StateSetter<AlgorithmSpeedOptions>;
+
+  // state for prevent user from sorting multiple times one array
   sortedOnce: boolean;
   setSortedOnce: StateSetter<boolean>;
 };
@@ -43,16 +62,38 @@ export const SortingVisualizerProvider: FC<{ children: ReactNode }> = ({
   /**
    * All possible states for the Sorting Visualizer
    */
-  const [arraySize, setArraySize] = useState<number>(20);
+
+  // Number() to make sure value from local storage is a number not a string
+  const [arraySize, setArraySize] = useState<number>(
+    Number(browserStorage.arraySize.get()) || 20
+  );
+  // Set the default algorithm to quick sort
+  const [selectedAlgorithm, setSelectedAlgorithm] = useState<AlgorithmsOptions>(
+    (browserStorage.selectedAlgorithm.get() as AlgorithmsOptions) || 'quickSort'
+  );
+  // Set the default algorithm speed to normal
+  const [algorithmSpeed, setAlgorithmSpeed] = useState<AlgorithmSpeedOptions>(
+    (browserStorage.algorithmSpeed.get() as AlgorithmSpeedOptions) || 'normal'
+  );
+
   const [array, setArray] = useState<number[]>(() =>
     generateNewArray({ range: arraySize, max: 100 })
   );
-  const [selectedAlgorithm, setSelectedAlgorithm] =
-    useState<AlgorithmsOptions>('quickSort');
+
   const [isSorting, setIsSorting] = useState<boolean>(false);
-  const [algorithmSpeed, setAlgorithmSpeed] =
-    useState<AlgorithmSpeedOptions>('normal');
   const [sortedOnce, setSortedOnce] = useState<boolean>(false);
+
+  /**
+   * Init default values for the browser storage
+   *
+   * to prevent re-rendering of the component don't put here
+   * dependency [] of useEffect
+   */
+  useEffect(() => {
+    browserStorage.arraySize.set(String(arraySize));
+    browserStorage.algorithmSpeed.set(algorithmSpeed);
+    browserStorage.selectedAlgorithm.set(selectedAlgorithm);
+  }, []);
 
   return (
     <SortingVisualizerContext.Provider

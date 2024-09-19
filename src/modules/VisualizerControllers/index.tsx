@@ -6,6 +6,7 @@ import {
   AlgorithmSpeedOptions,
   useSortingVisualizerContext,
 } from '@contexts/useSortingVisualizerContext';
+import { browserStorage } from '@helpers/browserStorage';
 import generateNewArray from '@helpers/generateNewArray';
 import { handleSort } from '@helpers/sortArrayFunctions';
 import { FC } from 'react';
@@ -36,9 +37,10 @@ const VisualizerControllers: FC = () => {
         id="algorithm-select"
         label="Select Algorithm"
         value={selectedAlgorithm}
-        onChange={(e) =>
-          setSelectedAlgorithm(e.target.value as AlgorithmsOptions)
-        }
+        onChange={(e) => {
+          setSelectedAlgorithm(e.target.value as AlgorithmsOptions);
+          browserStorage.selectedAlgorithm.set(e.target.value);
+        }}
         options={[
           { value: 'quickSort', label: 'Quick Sort' },
           { value: 'mergeSort', label: 'Merge Sort' },
@@ -48,8 +50,12 @@ const VisualizerControllers: FC = () => {
         id="array-size"
         label="Array Size"
         type="number"
-        value={arraySize}
-        onChange={(e) => setArraySize(Number(e.target.value))}
+        // Limit the array size to 100 (even with min max user can type any number, so this prevents that)
+        value={arraySize > 100 ? 100 : arraySize}
+        onChange={(e) => {
+          setArraySize(Number(e.target.value));
+          browserStorage.arraySize.set(e.target.value);
+        }}
         min={1}
         max={100}
       />
@@ -57,9 +63,10 @@ const VisualizerControllers: FC = () => {
         id="algorithm-speed"
         label="Algorithm speed"
         value={algorithmSpeed}
-        onChange={(e) =>
-          setAlgorithmSpeed(e.target.value as AlgorithmSpeedOptions)
-        }
+        onChange={(e) => {
+          setAlgorithmSpeed(e.target.value as AlgorithmSpeedOptions);
+          browserStorage.algorithmSpeed.set(e.target.value);
+        }}
         options={[
           { value: 'normal', label: 'Normal' },
           { value: 'fast', label: 'Fast' },

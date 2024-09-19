@@ -91,6 +91,12 @@ pod tym punktem opiszę decyzje projektowe i ewentualne trudności napotkane pod
 
 - **Rozwiazanie**: w głownym stylu styles.css napisałem regółki css aplikujac kolory z tailwinda, dzięki czemu nowe klasy będą miały większy piorytet - co prawda da się w klasie tailwind zwiększyć piorytet za pomocą "!" co oznacza, że kalsa ma dodany !important, ale importantów nie powinno się używać (jedynie jako ostateczność jest to dobra opcja).
 
+9. Zapisywanie danych w localStorage
+
+- Globalna funkcja odpowiedzialna za osadzenie odpowiednich danych w localstorage lub w session stroage (można sobie wybrać)
+- Zrobiłem to w ten sposób, źe w contexcie, gdzie trzymam wszystkie moje stany ustawiłem useEffect który wykonuje się tylko raz przy pierwszym renderze aplikacji, dzięki czemu na dzień dobry sprawdza/zapisuje ostatnie podane wartosci - nie ustawiam w useEffect "dependency array" aby zapobiec niepotrzebnym re-renderom w momencie jak zmienia się jedna z wartości zapisywanych, zamiast tego, funkcje set browserStorage umiescilem w kontrolerze do visualizera, gdzie wartości się zmieniają - dzięki temu, mamy odseparowe zmiany dla poszczególnych elementów, więc jak zmienie np szybkosć wykonywania algorytmu, to nie wywołam "potrzeby" zmiany w innych stanach
+- Dało się to zrobić prosciej np używajac useEffecta i ustawiając 'dependency array' na zmienionych elementach, ale negatywnie może to wpłynąć na aplikacje, gdyż wywołujemy re-render za kazdym razem na każdej z podanych zmiennych (nawet jak tylko jedna się zmieni) a tego nie chcemy robić.
+
 ### Podsumowanie
 
 1. **Wybranie środowiska**:
@@ -126,6 +132,12 @@ pod tym punktem opiszę decyzje projektowe i ewentualne trudności napotkane pod
    - Podział kodu na komponenty, helpery, moduły itp., aby zwiększyć czytelność.
 
 8. **Stylizacja i wygląd aplikacji**:
+
    - Dodanie stylów i poprawa wyglądu aplikacji.
    - Problemy: Konflikty stylów przy użyciu Tailwind.
    - Rozwiązanie: Zastosowanie reguł CSS w `styles.css` dla nadpisania stylów Tailwind.
+
+9. **Zapisywanie danych w przeglądarce**:
+   - Stworzenie glboalej funckji do zapisywania/pobierania oraz czyszczenia danych
+   - dodanie możliwosci wybrania czy to local czy session storage ma być użyty
+   - Zoptymalizowanie useEffect i poberania danych (uniknięcie re-renderów)
