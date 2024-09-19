@@ -1,18 +1,20 @@
 import generateNewArray from '@helpers/generateNewArray';
 import { createContext, FC, ReactNode, useContext, useState } from 'react';
 
-// All sorting algorithms available in the Sorting Visualizer
+// List of all sorting algorithms available in the Sorting Visualizer
 export type AlgorithmsOptions = 'quickSort' | 'mergeSort';
+
+type StateSetter<T> = React.Dispatch<React.SetStateAction<T>>;
 
 type SortingVisualizerContextProps = {
   arraySize: number;
-  setArraySize: (size: number) => void;
+  setArraySize: StateSetter<number>;
   array: number[];
-  setArray: (array: number[]) => void;
+  setArray: StateSetter<number[]>;
   selectedAlgorithm: AlgorithmsOptions;
-  setSelectedAlgorithm: (algorithm: AlgorithmsOptions) => void;
+  setSelectedAlgorithm: StateSetter<AlgorithmsOptions>;
   isSorting: boolean;
-  setIsSorting: (isSorting: boolean) => void;
+  setIsSorting: StateSetter<boolean>;
 };
 
 // Creating context with types for the Sorting Visualizer

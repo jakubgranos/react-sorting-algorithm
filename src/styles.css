@@ -7,3 +7,23 @@
 /* 
 * Global style for the entire application.
 */
+
+.array-bar.low {
+  background-color: yellow;
+}
+
+.array-bar.high {
+  background-color: orange;
+}
+
+.array-bar.pivot {
+  background-color: red;
+}
+
+.array-bar.sorted {
+  background-color: green;
+}
+
+.segment {
+  background-color: lightblue;
+}
