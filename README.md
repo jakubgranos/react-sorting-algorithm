@@ -72,6 +72,6 @@ pod tym punktem opiszę decyzje projektowe i ewentualne trudności napotkane pod
 
 - wizualizacje sortowania oparłem na tym źródle: https://commons.wikimedia.org/wiki/File:Quicksort.gif
 
-- **trudności**: wykonanie bardziej "szczegółowego" algorytmu quick sort wymagał ode mnie "doszkolenia" się w zakresie algorytmów i funckji które trzeba wykorzystać aby wykonać poprawnie zdanie
+- **trudności**: wykonanie bardziej "szczegółowego" algorytmu quick sort wymagał ode mnie "doszkolenia" się w zakresie algorytmów i funkcji które trzeba wykorzystać aby wykonać poprawnie zdanie
 
-- **rozwiąanie trudności**: Dokładny research jak i poradniki na yt pomogły mi zrozumieć jak działa ten algorytm.
+- **rozwiąnie trudności**: Dokładny research jak i poradniki na yt pomogły mi zrozumieć jak działa ten algorytm.
