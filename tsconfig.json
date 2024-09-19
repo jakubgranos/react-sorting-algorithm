@@ -14,7 +14,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@hooks/*": ["src/hooks/*"],
+      "@algorithms/*": ["src/algorithms/*"],
       "@components/*": ["src/components/*"],
       "@modules/*": ["src/modules/*"],
       "@helpers/*": ["src/helpers/*"],

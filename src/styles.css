@@ -7,3 +7,29 @@
 /* 
 * Global style for the entire application.
 */
+
+.array-bar.low,
+.array-bar.middle {
+  @apply bg-low;
+}
+
+.array-bar.high {
+  @apply bg-high;
+}
+
+.array-bar.pivot,
+.array-bar.left {
+  @apply bg-pivot;
+}
+
+.segment {
+  @apply bg-segment;
+}
+
+.array-bar.right {
+  @apply bg-right;
+}
+
+.array-bar.sorted {
+  @apply bg-sorted;
+}

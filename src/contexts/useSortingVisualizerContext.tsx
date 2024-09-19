@@ -1,42 +1,99 @@
+import { browserStorage } from '@helpers/browserStorage';
 import generateNewArray from '@helpers/generateNewArray';
-import { createContext, FC, ReactNode, useContext, useState } from 'react';
+import {
+  createContext,
+  FC,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 
-// All sorting algorithms available in the Sorting Visualizer
+/**
+ * Export types for the Sorting Visualizer options
+ */
 export type AlgorithmsOptions = 'quickSort' | 'mergeSort';
+export type AlgorithmSpeedOptions = 'normal' | 'fast' | 'slow';
 
+// Simplified type for the state hook
+type StateSetter<T> = React.Dispatch<React.SetStateAction<T>>;
+
+/**
+ * Define the properties for the SortingVisualizerContext
+ */
 type SortingVisualizerContextProps = {
+  // Array length
   arraySize: number;
-  setArraySize: (size: number) => void;
+  setArraySize: StateSetter<number>;
+
+  // Array of numbers
   array: number[];
-  setArray: (array: number[]) => void;
+  setArray: StateSetter<number[]>;
+
+  // states for algorithm selection
   selectedAlgorithm: AlgorithmsOptions;
-  setSelectedAlgorithm: (algorithm: AlgorithmsOptions) => void;
+  setSelectedAlgorithm: StateSetter<AlgorithmsOptions>;
+
+  // checking the state of sorting
   isSorting: boolean;
-  setIsSorting: (isSorting: boolean) => void;
+  setIsSorting: StateSetter<boolean>;
+
+  // state for algorithm speed
+  algorithmSpeed: AlgorithmSpeedOptions;
+  setAlgorithmSpeed: StateSetter<AlgorithmSpeedOptions>;
+
+  // state for prevent user from sorting multiple times one array
+  sortedOnce: boolean;
+  setSortedOnce: StateSetter<boolean>;
 };
 
-// Creating context with types for the Sorting Visualizer
+// Create context with types for the Sorting Visualizer
 const SortingVisualizerContext = createContext<SortingVisualizerContextProps>(
   {} as SortingVisualizerContextProps
 );
 
 /**
  * SortingVisualizerProvider component
- * To avoid prop drilling, this component provides the context to the children components
+ * Provides the context to the children components to avoid prop drilling
  */
 export const SortingVisualizerProvider: FC<{ children: ReactNode }> = ({
   children,
 }) => {
   /**
-   * All Possible states for the Sorting Visualizer
+   * All possible states for the Sorting Visualizer
    */
-  const [arraySize, setArraySize] = useState<number>(20);
+
+  // Number() to make sure value from local storage is a number not a string
+  const [arraySize, setArraySize] = useState<number>(
+    Number(browserStorage.arraySize.get()) || 20
+  );
+  // Set the default algorithm to quick sort
+  const [selectedAlgorithm, setSelectedAlgorithm] = useState<AlgorithmsOptions>(
+    (browserStorage.selectedAlgorithm.get() as AlgorithmsOptions) || 'quickSort'
+  );
+  // Set the default algorithm speed to normal
+  const [algorithmSpeed, setAlgorithmSpeed] = useState<AlgorithmSpeedOptions>(
+    (browserStorage.algorithmSpeed.get() as AlgorithmSpeedOptions) || 'normal'
+  );
+
   const [array, setArray] = useState<number[]>(() =>
     generateNewArray({ range: arraySize, max: 100 })
   );
-  const [selectedAlgorithm, setSelectedAlgorithm] =
-    useState<AlgorithmsOptions>('quickSort');
+
   const [isSorting, setIsSorting] = useState<boolean>(false);
+  const [sortedOnce, setSortedOnce] = useState<boolean>(false);
+
+  /**
+   * Init default values for the browser storage
+   *
+   * to prevent re-rendering of the component don't put here
+   * dependency [] of useEffect
+   */
+  useEffect(() => {
+    browserStorage.arraySize.set(String(arraySize));
+    browserStorage.algorithmSpeed.set(algorithmSpeed);
+    browserStorage.selectedAlgorithm.set(selectedAlgorithm);
+  }, []);
 
   return (
     <SortingVisualizerContext.Provider
@@ -49,6 +106,10 @@ export const SortingVisualizerProvider: FC<{ children: ReactNode }> = ({
         setSelectedAlgorithm,
         isSorting,
         setIsSorting,
+        algorithmSpeed,
+        setAlgorithmSpeed,
+        sortedOnce,
+        setSortedOnce,
       }}
     >
       {children}
@@ -57,8 +118,8 @@ export const SortingVisualizerProvider: FC<{ children: ReactNode }> = ({
 };
 
 /**
- * Creating here useContext can reduce the usage of context and import of sortingVisualizerContext
- * every time where context is needed to use.
+ * Custom hook to use the SortingVisualizerContext
+ * Reduces the need to import and use SortingVisualizerContext directly
  */
 export const useSortingVisualizerContext = () => {
   const context = useContext(SortingVisualizerContext);
