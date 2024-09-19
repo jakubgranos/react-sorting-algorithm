@@ -50,11 +50,13 @@ const VisualizerControllers: FC = () => {
         id="array-size"
         label="Array Size"
         type="number"
-        // Limit the array size to 100 (even with min max user can type any number, so this prevents that)
+        // Limit the array size to 100 (even with min max user can type any number, so this prevents that) - there is no need to go above 100 to visualize the sorting
         value={arraySize > 100 ? 100 : arraySize}
         onChange={(e) => {
-          setArraySize(Number(e.target.value));
-          browserStorage.arraySize.set(e.target.value);
+          if (Number(e.target.value) <= 100) {
+            setArraySize(Number(e.target.value));
+            browserStorage.arraySize.set(e.target.value);
+          }
         }}
         min={1}
         max={100}
